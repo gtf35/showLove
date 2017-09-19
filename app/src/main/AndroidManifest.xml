@@ -2,24 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="gtf.show.zibo" >
 
-    <application
+	<application
         android:allowBackup="true"
-        android:icon="@drawable/caoimg"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+		android:resizeableActivity = "true">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+			android:launchMode="singleTask" 
 			android:screenOrientation="landscape"
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-			android:theme="@android:style/Theme.NoTitleBar">
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		
     </application>
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 </manifest>
+

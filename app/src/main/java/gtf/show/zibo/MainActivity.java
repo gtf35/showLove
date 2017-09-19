@@ -47,7 +47,7 @@ public class MainActivity extends Activity
 		 // in onPause() call 
 		 mWakeLock.release();*/
 
-		qqJumpMsg();
+	//	qqJumpMsg();
 
 //设置toast提示
 		Toast toast = Toast.makeText(MainActivity.this,  "屏幕显示不全可以上下拖动", Toast.LENGTH_LONG);
@@ -150,7 +150,7 @@ public class MainActivity extends Activity
 	{
 		/**
 		 * 设置为横屏
-		 */
+	 */
 		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
 		{
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
