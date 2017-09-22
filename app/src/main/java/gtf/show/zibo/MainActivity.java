@@ -9,6 +9,7 @@ import android.net.*;
 import android.view.*;
 import android.content.pm.*;
 import android.widget.*;
+import android.support.v7.app.AlertDialog;
 
 public class MainActivity extends Activity 
 {
@@ -17,7 +18,8 @@ public class MainActivity extends Activity
 	boolean qq = true;
 	int time = 27;
 	String qqNumber = "2071077382";
-
+    boolean debuger = true;
+	//boolean debugAsk = true;
 
 
     @Override
@@ -36,7 +38,54 @@ public class MainActivity extends Activity
 	    super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+		
+//获取Preferences
+		SharedPreferences settingsRead = getSharedPreferences("data", 0);
+//取出数据
+		int startTime =Integer.parseInt(settingsRead.getString("startTime","0"))+1;
+		String startTime1 = startTime +"";
+		boolean debugerAsk =Boolean.parseBoolean( settingsRead.getString("debugerAsk","True"));
+//打开数据库
+		SharedPreferences settings = getSharedPreferences("data", 0);
+//处于编辑状态
+		SharedPreferences.Editor editor = settings.edit();
+//存放数据
+		editor.putString("startTime",startTime1);
+		//editor.putString("debugerAsk","true");
+//完成提交
+		editor.commit();
+		
+		
+		if(debuger&&debugerAsk){
 
+//显示是否以debuger身份登录
+			AlertDialog.Builder debugerAskDialog = new AlertDialog.Builder(this);
+        debugerAskDialog.setTitle("debug");
+		debugerAskDialog.setMessage("显示是否以debuger身份登录?");
+		debugerAskDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					debuger=false;
+				}
+			});
+		debugerAskDialog.setPositiveButton("确定",  new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+                    debuger=true;
+				}
+			});
+		debugerAskDialog.setNeutralButton("始终",  new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					SharedPreferences settings = getSharedPreferences("data", 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("debugerAsk","false");
+					editor.commit();
+					
+				}
+			});
+			debugerAskDialog.show();
+		}
 
 
 		/*屏幕常亮*/
