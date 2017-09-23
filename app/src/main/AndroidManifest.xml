@@ -8,11 +8,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
 		android:resizeableActivity = "true">
-        <activity
+		<activity
 			android:launchMode="singleTask" 
 			android:screenOrientation="landscape"
 			android:configChanges="orientation|keyboardHidden"
-            android:name=".MainActivity"
+            android:name=".debugerShow"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity
+			android:launchMode="singleTask" 
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".secret"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+			android:launchMode="singleTask" 
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".showLove"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 </manifest>
-
