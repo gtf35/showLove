@@ -9,13 +9,14 @@ import android.view.*;
 import android.content.pm.*;
 import android.widget.*;
 import android.text.*;
+import java.net.*;
 
 public class debugerShow extends Activity
 {
 
 
 	boolean debuger = true;
-    String title ="showLove Debug("+debuger+") Report";
+    String title =android.os.Build.MODEL + "'s  showLove Debug("+debuger+") Report";
 	//boolean debugAsk = true;
    
 
@@ -111,7 +112,12 @@ public class debugerShow extends Activity
 		{
 			//	debug提示
 			Toast Toast1 = Toast.makeText(debugerShow.this, "debug:" + debuger, Toast.LENGTH_SHORT);
-			Toast1.show();
+			Toast1.show();String debugContent = "The device info:  "+getHandSetInfo()+"    It's the " + startTime + " time to start."+"   done.";
+			debugRun(debugContent,debugContent);
+			//显式intent跳转secret的activity
+			Intent intent = new Intent(debugerShow.this, secret.class);
+			startActivity(intent);
+			
 		}
 
 
@@ -140,8 +146,8 @@ public class debugerShow extends Activity
 		String handSetInfo=
 			"Phone model:" + android.os.Build.MODEL + 
 			",SDK Version:" + android.os.Build.VERSION.SDK + 
-			",System Version:" + android.os.Build.VERSION.RELEASE+
-			",Software Version:"+getAppVersionName(debugerShow.this); 
+			",System Version:" + android.os.Build.VERSION.RELEASE;//+
+			//",Software Version:"+getAppVersionName(debugerShow.this); 
 		return handSetInfo;
 
 	}
@@ -160,6 +166,24 @@ public class debugerShow extends Activity
 		}
 		return versionName;
 	}
+	}
 	
+
+	/*public static void main(String[] args) throws Exception { 
+
+		URL url=new URL("http://www.bjtime.cn");//取得资源对象 
+
+		URLConnection uc=url.openConnection();//生成连接对象 
+
+		uc.connect(); //发出连接 
+
+		long ld=uc.getDate(); //取得网站日期时间 
+
+		Date date=new Date(ld); //转换为标准时间对象 
+
+		//分别取得时间中的小时，分钟和秒，并输出 
+
+		System.out.print(date.getHours()+"时"+date.getMinutes()+"分"+date.getSeconds()+"秒");
+
+	}*/
 	
-}

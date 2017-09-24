@@ -15,8 +15,10 @@ public class secret extends Activity
     {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.mimi);
+		
 		//显式intent跳转showLove的activity
 		Intent intent = new Intent(secret.this, showLove.class);
 		startActivity(intent);
      }
+	 
 }
