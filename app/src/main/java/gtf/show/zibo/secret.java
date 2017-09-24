@@ -8,7 +8,7 @@ import android.net.*;
 import android.view.*;
 import android.content.pm.*;
 import android.widget.*;
-public class secret extends debugerShow
+public class secret extends Activity
 {
 	@Override
     protected void onCreate(Bundle savedInstanceState)

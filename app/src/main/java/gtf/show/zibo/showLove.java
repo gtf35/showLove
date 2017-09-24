@@ -11,7 +11,7 @@ import android.content.pm.*;
 import android.widget.*;
 //import android.support.v7.app.AlertDialog;
 
-public class showLove extends debugerShow 
+public class showLove extends Activity 
 {
 
 // 定义各种全局变量
@@ -168,6 +168,22 @@ public class showLove extends debugerShow
 		super.onResume();
 	}
 	
+	/**
+	 * 监听Back键按下事件,方法1:
+	 * 注意:
+	 * super.onBackPressed()会自动调用finish()方法,关闭
+	 * 当前Activity.
+	 * 若要屏蔽Back键盘,注释该行代码即可
+	 */
+    @Override
+    public void onBackPressed() {
+    	//super.onBackPressed();
+		//finish();
+		//android.os.Process.killProcess(android.os.Process.myPid());
+       exitProgrames();
+		System.out.println("按下了back键   onBackPressed()");    	
+    }
+	
 	public void qqJump(){
 		//定时调用QQ跳转，根据QQ的布尔值判断是否开启
 
@@ -198,6 +214,14 @@ public class showLove extends debugerShow
 			
 		}
 		
+	}
+	
+	public void exitProgrames(){
+		Intent startMain = new Intent(Intent.ACTION_MAIN);
+		startMain.addCategory(Intent.CATEGORY_HOME);
+		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(startMain);
+		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 }
