@@ -18,8 +18,13 @@ public class showLove extends Activity
 	boolean qq = true;
 	int time = 27;
 	String qqNumber = "2071077382";
-
-
+	String notLoveMe ="我走了，照顾好自己😥";
+	String LoveMe = "哦耶！😆😆😆";
+    String askLoveTitle = "你愿意做我女朋友吗？";
+    boolean love = false;
+	
+	
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -134,7 +139,7 @@ public class showLove extends Activity
 							//System.out.println("js调用了Android的方法");
 							//String tempqq = "mqqwpa://im/chat?chat_type=wpa&uin=" + qqNumber;
 							//startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tempqq)));
-							qqJump();
+							seeOver();
 							// 可以在协议上带有参数并传递到Android上
 							HashMap<String, String> params = new HashMap<>();
 							Set<String> collection = uri.getQueryParameterNames();
@@ -184,7 +189,7 @@ public class showLove extends Activity
 		System.out.println("按下了back键   onBackPressed()");    	
     }
 	
-	public void qqJump(){
+	public void seeOver(){
 		//定时调用QQ跳转，根据QQ的布尔值判断是否开启
 
 		if (qq)
@@ -194,9 +199,23 @@ public class showLove extends Activity
 					public void run()
 					{
 						System.out.println("时间到");
-						String tempqq = "mqqwpa://im/chat?chat_type=wpa&uin=" + qqNumber;
-						startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tempqq)));
-						//finish();
+//获取Preferences
+						SharedPreferences settingsRead = getSharedPreferences("data", 0);
+//取出数据
+						final int overTime =Integer.parseInt(settingsRead.getString("overTime", "0")) + 1;
+						String overTime1 = overTime + "";
+						
+//打开数据库
+						SharedPreferences settings = getSharedPreferences("data", 0);
+//处于编辑状态
+						SharedPreferences.Editor editor = settings.edit();
+//存放数据
+						editor.putString("overTime", overTime1);
+						//editor.putString("debugerAsk","true");
+//完成提交
+						editor.commit();
+						
+						askLoveMeOrNot();
 						this.cancel();
 					}
 				}, time * 1000);// 这里百毫秒
@@ -210,11 +229,65 @@ public class showLove extends Activity
 	public void qqJumpMsg(){
 		if (qq){
 			//设置toast提示
-			
+			Toast toast = Toast.makeText(showLove.this,  "爱你😘😘😘😘😘😘", Toast.LENGTH_SHORT);
+			toast.show();
 			
 		}
 		
 	}
+	
+	public void askLoveMeOrNot(){
+		
+		AlertDialog.Builder AskLoveMeOrNotDialog = new AlertDialog.Builder(this);
+		AskLoveMeOrNotDialog.setCancelable(false);
+		AskLoveMeOrNotDialog.setTitle("那么：");
+		AskLoveMeOrNotDialog.setMessage(askLoveTitle);
+		AskLoveMeOrNotDialog.setNegativeButton("抱歉，不", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					love = false;
+					//	提示
+					Toast Toast1 = Toast.makeText(showLove.this,notLoveMe, Toast.LENGTH_SHORT);
+					Toast1.show();
+					Intent intent = new Intent(showLove.this, notLove.class);
+					startActivity(intent);
+				}
+			});
+		AskLoveMeOrNotDialog.setPositiveButton("嗯，好哒😘",  new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					love = true;
+					//	send email
+					sendEMail(android.os.Build.MODEL+"'s  Love me report!","She clicked love me button !!!!");
+					//qq jump message
+					qqJumpMsg();
+					// jump qq
+					String tempqq = "mqqwpa://im/chat?chat_type=wpa&uin=" + qqNumber;
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tempqq)));
+					// exit
+					//exitProgrames();  
+					
+					
+
+				}
+			});
+		AskLoveMeOrNotDialog.setNeutralButton("   ",  new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					exitProgrames();
+				}
+			});
+		AskLoveMeOrNotDialog.show();
+		
+		
+	}
+	
+	private void sendEMail(String title,String text) {
+        MailManager.getInstance().sendMail(title, text);
+		}
 	
 	public void exitProgrames(){
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
