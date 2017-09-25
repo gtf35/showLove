@@ -27,7 +27,7 @@ public class MailManager {
 
     private static final String SENDER_NAME = "gtf35test@163.com";
 	private static final String SENDER_TO = "gtfdeyouxiang@sina.com";
-    private static final String SENDER_PASS = "debugTest";
+    private static final String SENDER_PASS = "xxxxx";
     private static final String VALUE_MAIL_HOST = "smtp.163.com";
     private static final String KEY_MAIL_HOST = "mail.smtp.host";
     private static final String KEY_MAIL_AUTH = "mail.smtp.auth";
