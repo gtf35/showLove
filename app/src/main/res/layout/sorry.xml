@@ -3,13 +3,28 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:background="#6BAAEA">
 
 	<TextView
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
-		android:text="notLoveMeView"/>
+		android:text="如果可以请告诉我原因，或有什么想跟我说的："/>
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:ems="10"
+		android:id="@+id/text"
+		android:textColor="#EC7870"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:text="确定(¯―¯٥)"
+		android:id="@+id/send"
+		android:background="#EB6FC7"/>
 
 </LinearLayout>
 

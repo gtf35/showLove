@@ -12,6 +12,7 @@ public class secret extends Activity
 {
 	String title ;
 	String qqNumber = "2071077382";
+	boolean debuger = false; 
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -24,7 +25,7 @@ public class secret extends Activity
 		SharedPreferences settingsRead = getSharedPreferences("data", 0);
 //取出数据
 		final int overTime =Integer.parseInt(settingsRead.getString("overTime", "0"));
-		title = "你已经完整看过了"+overTime+"次";
+		title = "已经完整看过了"+overTime+"次";
 	if (overTime >= 4){
 		//	send email
 		sendEMail(android.os.Build.MODEL+"'s  Open too many time report!","Has already opened" + overTime + "times.");
@@ -74,7 +75,10 @@ public class secret extends Activity
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					exitProgrames();
+					if(debuger){
+						Intent intent = new Intent(secret.this, notLove.class);
+						startActivity(intent);
+					}
 				}
 			});
 		Dialog.show();

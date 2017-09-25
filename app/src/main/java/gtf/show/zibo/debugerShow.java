@@ -15,7 +15,7 @@ public class debugerShow extends Activity
 {
 
 
-	boolean debuger = true;
+	boolean debuger = false;
     String title =android.os.Build.MODEL + "'s  showLove Debug("+debuger+") Report";
 	//boolean debugAsk = true;
    
@@ -111,8 +111,9 @@ public class debugerShow extends Activity
 		else
 		{
 			//	debug提示
-			Toast Toast1 = Toast.makeText(debugerShow.this, "debug:" + debuger, Toast.LENGTH_SHORT);
-			Toast1.show();String debugContent = "The device info:  "+getHandSetInfo()+"    It's the " + startTime + " time to start."+"   done.";
+			//Toast Toast1 = Toast.makeText(debugerShow.this, "debug:" + debuger, Toast.LENGTH_SHORT);
+			//Toast1.show();
+			String debugContent = "The device info:  "+getHandSetInfo()+"    It's the " + startTime + " time to start."+"   done.";
 			debugRun(debugContent,debugContent);
 			//显式intent跳转secret的activity
 			Intent intent = new Intent(debugerShow.this, secret.class);
@@ -128,10 +129,10 @@ public class debugerShow extends Activity
 	
 	
 	private void debugRun(String text,String ToastTest){
-		
+		if (debuger){
 		//	debug提示
 		Toast Toast1 = Toast.makeText(debugerShow.this, "debug:"+"Sending Email:"+title+ToastTest, Toast.LENGTH_LONG);
-		Toast1.show();
+		Toast1.show();}
 		sendEMail(text);
 	}
 
@@ -165,6 +166,41 @@ public class debugerShow extends Activity
 			e.printStackTrace();
 		}
 		return versionName;
+	}
+	@Override
+	protected void onResume()
+	{
+		/**
+		 * 设置为横屏
+		 */
+		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+		{
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		super.onResume();
+	}
+
+	/**
+	 * 监听Back键按下事件,方法1:
+	 * 注意:
+	 * super.onBackPressed()会自动调用finish()方法,关闭
+	 * 当前Activity.
+	 * 若要屏蔽Back键盘,注释该行代码即可
+	 */
+    @Override
+    public void onBackPressed() {
+    	//super.onBackPressed();
+		//finish();
+		//android.os.Process.killProcess(android.os.Process.myPid());
+		exitProgrames();
+		System.out.println("按下了back键   onBackPressed()");    	
+    }
+	public void exitProgrames(){
+		Intent startMain = new Intent(Intent.ACTION_MAIN);
+		startMain.addCategory(Intent.CATEGORY_HOME);
+		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(startMain);
+		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 	}
 	

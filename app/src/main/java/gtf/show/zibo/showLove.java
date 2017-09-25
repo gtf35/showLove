@@ -43,7 +43,7 @@ public class showLove extends Activity
         setContentView(R.layout.main);
 
 		
-
+		//LogWriter.writeLog("wenming", "打Log测试！！！！");
 		/*屏幕常亮*/
 		/*PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		 PowerManager.WakeLock mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag"); 
@@ -214,81 +214,17 @@ public class showLove extends Activity
 						//editor.putString("debugerAsk","true");
 //完成提交
 						editor.commit();
-						
-						askLoveMeOrNot();
+//jump ask activity
+						Intent intent = new Intent(showLove.this, ask.class);
+						startActivity(intent);
 						this.cancel();
 					}
 				}, time * 1000);// 这里百毫秒
 			System.out.println("本程序自动退出");
 		}
 		
-	
-		
 	}
-	
-	public void qqJumpMsg(){
-		if (qq){
-			//设置toast提示
-			Toast toast = Toast.makeText(showLove.this,  "爱你😘😘😘😘😘😘", Toast.LENGTH_SHORT);
-			toast.show();
-			
-		}
-		
-	}
-	
-	public void askLoveMeOrNot(){
-		
-		AlertDialog.Builder AskLoveMeOrNotDialog = new AlertDialog.Builder(this);
-		AskLoveMeOrNotDialog.setCancelable(false);
-		AskLoveMeOrNotDialog.setTitle("那么：");
-		AskLoveMeOrNotDialog.setMessage(askLoveTitle);
-		AskLoveMeOrNotDialog.setNegativeButton("抱歉，不", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					love = false;
-					//	提示
-					Toast Toast1 = Toast.makeText(showLove.this,notLoveMe, Toast.LENGTH_SHORT);
-					Toast1.show();
-					Intent intent = new Intent(showLove.this, notLove.class);
-					startActivity(intent);
-				}
-			});
-		AskLoveMeOrNotDialog.setPositiveButton("嗯，好哒😘",  new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					love = true;
-					//	send email
-					sendEMail(android.os.Build.MODEL+"'s  Love me report!","She clicked love me button !!!!");
-					//qq jump message
-					qqJumpMsg();
-					// jump qq
-					String tempqq = "mqqwpa://im/chat?chat_type=wpa&uin=" + qqNumber;
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tempqq)));
-					// exit
-					//exitProgrames();  
-					
-					
 
-				}
-			});
-		AskLoveMeOrNotDialog.setNeutralButton("   ",  new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					exitProgrames();
-				}
-			});
-		AskLoveMeOrNotDialog.show();
-		
-		
-	}
-	
-	private void sendEMail(String title,String text) {
-        MailManager.getInstance().sendMail(title, text);
-		}
-	
 	public void exitProgrames(){
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
 		startMain.addCategory(Intent.CATEGORY_HOME);
@@ -296,5 +232,7 @@ public class showLove extends Activity
 		startActivity(startMain);
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
+	
+	
 
 }
