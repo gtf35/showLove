@@ -17,7 +17,8 @@
 		android:layout_width="match_parent"
 		android:ems="10"
 		android:id="@+id/text"
-		android:textColor="#EC7870"/>
+		android:textColor="#EC7870"
+		android:maxHeight="100dp"/>
 
 	<Button
 		android:layout_height="wrap_content"

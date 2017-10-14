@@ -4,7 +4,6 @@
 
 作者：
 铁烽(gtfdeyouxiang@gmail.com)
-高考前再更新MD剁手！！！
 开源地址 [GitHub](https://www.github.com/gtf35/showLove)
 
 ## 感谢所有为这个项目付出的人，谢谢！！

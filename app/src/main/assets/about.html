@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>about</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+
+img {
+  max-width: 100%
+}
+
+</style>
+<base href='file:\\/storage/emulated/0/AppProjects1/showLove/app/src/main/assets/about.MD'/>
+</head>
+<body>
+<!-- Author: HJQ -->
+<!-- mail: 880634@qq.com -->
+<h1>一个向女神表白的App</h1><blockquote><p>前言：</p><p>我向来不善言辞，不管是说出来也好还是写在纸上也罢。但是表白这件事绝不能含糊，我想力所能及的让这份情书看起来更靚眼一些。恰巧我看到了一个表白的网页，感觉很棒，但是有不少硬伤：手机竖屏体验非常不好，缺少必要交互，缺少上报机制--“对方看没看完，想法如何”都不知道。由于我不擅长网页制作，于是在我相对擅长的Android端做了这个应用，希望可以打动对方。</p></blockquote><p>作者：</p><p>铁烽(gtfdeyouxiang@gmail.com)</p><p>开源地址 <a href="https://www.github.com/gtf35/showLove" title="">GitHub</a></p><h2>感谢所有为这个项目付出的人，谢谢！！</h2><ul><li><p>感谢轮子作者：</p></li></ul><blockquote><p>wuxia2001(HTML)</p><p>DevWiki(javaMailManager类)</p><p>没有你们我将多花很多的精力，再次感谢。</p></blockquote><ul><li><p>感谢</p></li></ul><blockquote><p>@The Flash</p><p>在我遇到头疼的bug时和我一起探讨，给我建议。</p></blockquote><ul><li><p>感谢这些朋友为我测试：</p></li></ul><blockquote><p>@爽月克西斯教协)无之卯月(2190974394)</p><p>@正之霜月(2396670953)</p><p>@你认识王莫然吗(1187423330)</p><p>@Harlem(3259079912)</p><p>@Refrain丶♚(1209179280)</p><p>@正则(735365895)</p><p>@圆夜之志森(853002109)</p><p>@極鵺♚SVITHJOD(2254627791)</p><p>@アリス(875718992)</p><p>及一位匿名朋友</p><p>你们为这个项目稳定做出了巨大的贡献。</p></blockquote><p>注：测试者使用的是测试版本不包含任何个人隐私信息</p><p>敬礼！(^_^メ)</p><h2>更新日志</h2><ul><li><p>2017/10/13 完善音乐控制逻辑</p></li><li><p>2017/10/12 添加背景音乐服务。自己写了个背景音乐控制类:强制修改音量为30%，添加了简单的背景音乐控制逻辑。#(哭。。。这么简单的功能居然因为一堆粗心搞到了两点半才睡)</p></li><li><p>2017/10/10 修改触发secret的dialog显示的条件为打开程序&gt;=3次。添加并完善逻辑:askloveActivity显示两次以上时不再显示而且toast提醒。</p></li><li><p>2017/10/09 添加关于，完善感谢列表。</p></li><li><p>2017/10/01 添加启动LOGO，添加版权信息</p></li><li><p>2017/09/29 添加加载HTML的加载提示，以提升在低配手机上的使用体验。</p></li><li><p>2017/09/26 全面升级询问界面，彻底完善询问交互，加强监控，修复所有bug，默认关闭调试。从这个版本开始由于开始准备情书内容，出于隐私保护停止上传GitHub，暂停公开测试。</p></li><li><p>2017/09/25 修复debug询问点始终不跳转主activity的bug，优化日志上报信息，增加结果询问上报系统</p></li><li><p>2017/09/24 增加后台日志静默上报，包括debug开关，手机型号，系统版本，软件版本，开启次数</p></li><li><p>2017/09/24 填乱继承的坑，添加back键拦截</p></li><li><p>2017/09/23 通过activity完善debug与使用的区分，为后续添加时间条件做准备</p></li><li><p>2017/09/22 添加debug的询问dialog，添加数据库，添加启动记次</p></li><li><p>2017/09/16 添加到img的toast，添加js调用Android代码，自动跳转QQ功能</p></li><li><p>2017/09/15 第一版完成</p></li></ul>
+</body>
+</html>

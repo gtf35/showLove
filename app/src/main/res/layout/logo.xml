@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#000000">
+
+	<TextView
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="铁烽.Software"
+		android:textColor="#FDFDFD"
+		android:layout_centerInParent="true"
+		android:id="@+id/logologoText1"
+		android:textSize="45sp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textColor="#FDFDFD"
+		android:layout_below="@id/logologoText1"
+		android:layout_toRightOf="@id/logologoText1"
+		android:text="-------为梦想拼搏"
+		android:id="@+id/logologoText2"
+		android:textSize="15sp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textColor="#FDFDFD"
+		android:layout_below="@id/logologoText2"
+		android:layout_toRightOf="@id/logologoText1"
+		android:text="铁烽独立编写Android交互界面与逻辑与后台上报。内嵌HTML由wuxia2001完成，再次感谢"
+		android:textSize="5sp"/>
+
+</RelativeLayout>
+

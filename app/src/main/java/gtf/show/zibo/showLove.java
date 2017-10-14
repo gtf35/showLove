@@ -9,29 +9,32 @@ import android.net.*;
 import android.view.*;
 import android.content.pm.*;
 import android.widget.*;
-//import android.support.v7.app.AlertDialog;
+import android.graphics.*;
 
 public class showLove extends Activity 
 {
 
 // 定义各种全局变量
 	boolean qq = true;
-	int time = 27;
+	boolean canExit = false;
+	int time = 28;
 	String qqNumber = "2071077382";
-	String notLoveMe ="我走了，照顾好自己😥";
+	String notLoveMe ="那好吧，肯呢个是我不够优秀😥";
 	String LoveMe = "哦耶！😆😆😆";
     String askLoveTitle = "你愿意做我女朋友吗？";
     boolean love = false;
-	
-	
+	ProgressDialog mProgressDialog;
+	AlertDialog.Builder Dialog;
+	AlertDialog.Builder musicAskDialog;
+	WebView webView;
+	String urlLove;
 	
 
-    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
-		this.setCancelable(false);// 设置点击屏幕Dialog不消失
-
+		mProgressDialog = new ProgressDialog(this);
+		Dialog = new AlertDialog.Builder(this);
+		musicAskDialog = new AlertDialog.Builder(this);
 		/*Java代码设置强制全屏横屏*/
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏标题
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -42,48 +45,52 @@ public class showLove extends Activity
 	    super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-		
-		//LogWriter.writeLog("wenming", "打Log测试！！！！");
-		/*屏幕常亮*/
-		/*PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		 PowerManager.WakeLock mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag"); 
-		 // in onResume() call
-		 mWakeLock.acquire(); 
-		 // in onPause() call 
-		 mWakeLock.release();*/
+		Dialog.setCancelable(false);
+		Dialog.setTitle("小提示");
+		//获取Preferences
+		SharedPreferences settingsRead = getSharedPreferences("data", 0);
+//取出数据
+		final int overTime =Integer.parseInt(settingsRead.getString("overTime", "0")) + 1;
+		if(overTime <= 2){Dialog.setMessage("受手机屏幕比例不同所限，界面竖直方向应该会显示不全，但是可以上下拖动哒😂");
+		}else{Dialog.setMessage("感谢你的再次观看，由于你已经经历2次选择，所以我认为这次打开的目的仅仅是想再看看，所以不再询问是否喜欢我。祝你生活愉快，动画结束5s后程序自动退出，你也可以按返回键立刻退出😋");
+			canExit = true;
 
-	//	qqJumpMsg();
-
-	
-
-	
-
-	
-//设置toast提示
-		Toast toast = Toast.makeText(showLove.this,  "屏幕显示不全可以上下拖动", Toast.LENGTH_SHORT);
-//img toast
-//定义一个ImageView
-		ImageView imageView = new ImageView(showLove.this);
-		imageView.setImageResource(R.drawable.smallcao);
-//获得Toast的View
-		View toastView = toast.getView();
-//定义一个Layout，这里是Layout
-		LinearLayout linearLayout = 
-			new LinearLayout(showLove.this);
-		linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-//将ImageView和ToastView合并到Layout中
-		linearLayout.addView(imageView);
-		linearLayout.addView(toastView);
-//替换掉原有的ToastView
-		toast.setView(linearLayout);
-		toast.show();
-
+		}
+		Dialog.setNegativeButton("了解", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{   Toast toast = Toast.makeText(showLove.this,  "OK,我们开始", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+			});
+			
+		musicAskDialog.setCancelable(false);
+		musicAskDialog.setTitle("是否开启背景音乐?");
+	    musicAskDialog.setMessage("这个背景音乐很不错滴！真的，如果环境允许非常建议开的！！！\n-如果选择开启的话，无论手机现在是否静音，程序将自动调整到一个较小的音量播放音乐，程序退出时将自动恢复之前的音量设置。 \n-如果选择关闭的话，程序将什么都不会做。 \n-做个选择吧😊");
+		musicAskDialog.setPositiveButton("开启", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{   Intent intentStart = new Intent(showLove.this, MusicService.class);
+					startService(intentStart);
+					Toast toast = Toast.makeText(showLove.this,  "音乐的名字叫：未来的志愿书", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+			});	
+		musicAskDialog.setNeutralButton("关闭",  new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Toast toast = Toast.makeText(showLove.this,  "音乐的名字叫：未来的志愿书，有空你听听.", Toast.LENGTH_SHORT);
+					toast.show();
+				}
+			});
 
 
 //开始显示内置网页
-		WebView webView = (WebView)findViewById(R.id.webview);
-        webView.loadUrl("file:///android_asset/Love.html");
-
+		webView = (WebView)findViewById(R.id.webview);
+		//urlLove ="http://www.baidu.com";
+		urlLove = "file:///android_asset/Love.html";
+		webView.loadUrl(urlLove);
 
 
 
@@ -112,9 +119,29 @@ public class showLove extends Activity
 		webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口 
 		webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
 		webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+		// webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
 		//复写WebViewClient类的shouldOverrideUrlLoading方法
 		webView.setWebViewClient(new WebViewClient() {
+
+				@Override
+				public void onPageStarted(WebView view, String url, Bitmap favicon)
+				{
+					super.onPageStarted(view, url, favicon);
+					mProgressDialog.show();
+					mProgressDialog.setMessage("加载中……😂😂😂");
+				}
+				@Override
+				public void onPageFinished(WebView view, String url)
+				{
+					super.onPageFinished(view, url);
+					mProgressDialog.hide();
+					Dialog.show();
+                    musicAskDialog.show();
+
+					
+				}
+
 				@Override
 				public boolean shouldOverrideUrlLoading(WebView view, String url)
 				{
@@ -165,14 +192,14 @@ public class showLove extends Activity
 	{
 		/**
 		 * 设置为横屏
-	 */
+		 */
 		if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
 		{
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		}
 		super.onResume();
 	}
-	
+
 	/**
 	 * 监听Back键按下事件,方法1:
 	 * 注意:
@@ -181,20 +208,16 @@ public class showLove extends Activity
 	 * 若要屏蔽Back键盘,注释该行代码即可
 	 */
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+	{
     	//super.onBackPressed();
 		//finish();
 		//android.os.Process.killProcess(android.os.Process.myPid());
-       exitProgrames();
+		exitProgrames();
 		System.out.println("按下了back键   onBackPressed()");    	
     }
-	
-	public void seeOver(){
-		//定时调用QQ跳转，根据QQ的布尔值判断是否开启
 
-		if (qq)
-		{
-			Timer timer = new Timer();// 实例化Timer类
+	public void seeOver(){Timer timer = new Timer();// 实例化Timer类
 			timer.schedule(new TimerTask() {
 					public void run()
 					{
@@ -204,7 +227,7 @@ public class showLove extends Activity
 //取出数据
 						final int overTime =Integer.parseInt(settingsRead.getString("overTime", "0")) + 1;
 						String overTime1 = overTime + "";
-						
+
 //打开数据库
 						SharedPreferences settings = getSharedPreferences("data", 0);
 //处于编辑状态
@@ -215,24 +238,64 @@ public class showLove extends Activity
 //完成提交
 						editor.commit();
 //jump ask activity
-						Intent intent = new Intent(showLove.this, ask.class);
-						startActivity(intent);
+						if(overTime <= 2){
+							Intent intent = new Intent(showLove.this, ask.class);
+							startActivity(intent);
 						this.cancel();
+						}else{
+							//toast("感谢你的再次观看，由于你已经经历2次选择，/n 我认为这次观看的目的仅仅是想再看看，所以不再询问。😊");
+							//toast("祝你生活愉快，5s后程序退出，你也可以按返回键立刻退出😋");
+							canExit = true;
+							timerExit();
+							
+						}
 					}
 				}, time * 1000);// 这里百毫秒
 			System.out.println("本程序自动退出");
-		}
 		
+
+	}
+	
+	public void timerExit()
+	{
+			Timer timer = new Timer();// 实例化Timer类
+			timer.schedule(new TimerTask() {
+					public void run()
+					{	Intent intentStop = new Intent(showLove.this, MusicService.class);
+						stopService(intentStop);
+						//toast("已退出");
+						Intent startMain = new Intent(Intent.ACTION_MAIN);
+							startMain.addCategory(Intent.CATEGORY_HOME);
+							startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							startActivity(startMain);
+							android.os.Process.killProcess(android.os.Process.myPid());
+					}
+				}, 5000);// 这里百毫秒
+			System.out.println("本程序自动退出");
+		
+
 	}
 
-	public void exitProgrames(){
-		Intent startMain = new Intent(Intent.ACTION_MAIN);
-		startMain.addCategory(Intent.CATEGORY_HOME);
-		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(startMain);
-		android.os.Process.killProcess(android.os.Process.myPid());
+	public void exitProgrames()
+	{
+		if(canExit == false){Toast toast = Toast.makeText(showLove.this,  "看完吧，时间不长😊", Toast.LENGTH_SHORT);
+		toast.show();
+		}else{Intent intentStop = new Intent(showLove.this, MusicService.class);
+			stopService(intentStop);
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
+			android.os.Process.killProcess(android.os.Process.myPid());
+				   }
 	}
 	
 	
+	public void toast(String say){Toast toast = Toast.makeText(showLove.this,  say, Toast.LENGTH_LONG);
+		toast.show();
+	}
+
+
 
 }
+

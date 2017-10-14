@@ -40,6 +40,7 @@
 			android:configChanges="orientation|keyboardHidden"
             android:name=".notLove"
             android:label="@string/app_name" >
+
         </activity>
         <activity
 			android:launchMode="singleTask" 
@@ -48,10 +49,19 @@
             android:name=".ask"
             android:label="@string/app_name" >
         </activity>
+		<activity
+			android:launchMode="singleTask" 
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".about"
+            android:label="说明.关于" >
+        </activity>
+		<service android:name=".MusicService"/>  
     </application>
 
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 </manifest>

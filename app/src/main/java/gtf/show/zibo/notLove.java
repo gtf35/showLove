@@ -16,6 +16,20 @@ public class notLove extends Activity{
     {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.sorry);
+	AlertDialog.Builder tellDontHateMeDialog = new AlertDialog.Builder(this);
+	tellDontHateMeDialog.setCancelable(true);
+	tellDontHateMeDialog.setTitle("有件事想跟你说说…");
+	tellDontHateMeDialog.setMessage("(・へ・)不知道你此刻的心情如何？ \n 不过我想说: \n 这个APP也是很用心做的。\n 一共花了48h以上; \n 写了1000+行的代码。 \n 不祈求喜欢这个App，但我不想你因此不开心。 \n 好吗？😞");
+	tellDontHateMeDialog.setNegativeButton("知道了", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				
+			
+			}
+		});
+	tellDontHateMeDialog.show();
+
 		Button send =(Button)this.findViewById(R.id.send);
         final EditText text = (EditText)this.findViewById(R.id.text);
 		send.setOnClickListener(new OnClickListener() {
@@ -88,6 +102,8 @@ public class notLove extends Activity{
 		System.out.println("按下了back键   onBackPressed()");    	
     }
 	public void exitProgrames(){
+		Intent intentStop = new Intent(notLove.this, MusicService.class);
+		stopService(intentStop);
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
 		startMain.addCategory(Intent.CATEGORY_HOME);
 		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

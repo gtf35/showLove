@@ -8,8 +8,8 @@ android {
         applicationId "gtf.show.zibo"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "3.2.github"
     }
     buildTypes {
         release {
