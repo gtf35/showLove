@@ -4,7 +4,9 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:gravity="center"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:keepScreenOn="true"
+	android:theme="@android:style/Theme.Light.NoTitleBar" >
 
 	<WebView
 		android:text="@string/hello_world"

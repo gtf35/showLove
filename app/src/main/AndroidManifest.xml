@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="gtf.show.zibo" >
+    package="gtf.show.love" >
 
 	<application
         android:allowBackup="true"
@@ -9,16 +9,12 @@
         android:theme="@style/AppTheme"
 		android:resizeableActivity = "true">
 		<activity
-			android:launchMode="singleTask" 
+			android:launchMode="singleTask"
+			android:excludeFromRecents="true"
 			android:screenOrientation="landscape"
 			android:configChanges="orientation|keyboardHidden"
             android:name=".debugerShow"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 		<activity
 			android:launchMode="singleTask" 
@@ -40,8 +36,14 @@
 			android:configChanges="orientation|keyboardHidden"
             android:name=".notLove"
             android:label="@string/app_name" >
-
         </activity>
+		<activity
+			android:launchMode="singleTask" 
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".notLove2"
+            android:label="@string/app_name" >
+		</activity>
         <activity
 			android:launchMode="singleTask" 
 			android:screenOrientation="landscape"
@@ -56,7 +58,51 @@
             android:name=".about"
             android:label="说明.关于" >
         </activity>
-		<service android:name=".MusicService"/>  
+		<activity
+			android:launchMode="singleTask" 
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name=".about2"
+            android:label="说明.关于" >
+        </activity>
+		<service android:name=".MusicService"/>
+		<!--name：组件名字-->
+        <!--enabled：该组件是否启动-->
+        <!--icon：组件图标-->
+        <!--label：组件标签说明-->
+        <!--targetActivity：组件的类-->
+        <activity-alias
+			android:launchMode="singleTask"
+			android:enabled="true"
+			android:excludeFromRecents="true"
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name="Hi"
+            android:label="@string/app_name" 
+            android:targetActivity=".debugerShow"
+			android:icon="@drawable/ic_launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:launchMode="singleTask"
+			android:enabled="false"
+			android:excludeFromRecents="true"
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden"
+            android:name="系统服务"
+            android:label="系统服务" 
+			android:icon="@drawable/secret_icon"
+            android:targetActivity=".debugerShow">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+		</activity-alias>
     </application>
 
 	<uses-permission android:name="android.permission.INTERNET"/>

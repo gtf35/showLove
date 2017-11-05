@@ -4,7 +4,8 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
-	android:background="#000000">
+	android:background="#000000"
+	android:keepScreenOn="true">
 
 	<TextView
 		android:textAppearance="?android:attr/textAppearanceLarge"
@@ -22,18 +23,17 @@
 		android:textColor="#FDFDFD"
 		android:layout_below="@id/logologoText1"
 		android:layout_toRightOf="@id/logologoText1"
-		android:text="-------为梦想拼搏"
+		android:text="-------已进入应急保护模式，请退出后重新进入！！"
 		android:id="@+id/logologoText2"
 		android:textSize="15sp"/>
 
-	<TextView
+	<Button
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:textColor="#FDFDFD"
-		android:layout_below="@id/logologoText2"
-		android:layout_toRightOf="@id/logologoText1"
-		android:text="铁烽独立编写Android交互界面与逻辑与后台上报。内嵌HTML由wuxia2001完成，再次感谢"
-		android:textSize="5sp"/>
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/mexit"
+		android:text="退出"/>
 
 </RelativeLayout>
 

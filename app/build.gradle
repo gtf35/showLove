@@ -5,11 +5,11 @@ android {
     buildToolsVersion "21.1.0"
 
     defaultConfig {
-        applicationId "gtf.show.zibo"
+        applicationId "gtf.show.love"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 4
-        versionName "3.2.github"
+        versionCode 5
+        versionName "4.3.github"
     }
     buildTypes {
         release {
